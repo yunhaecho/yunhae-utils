@@ -1,22 +1,37 @@
 {
   "name": "yunhae-utils",
-  "version": "0.1.0",
+  "version": "1.0.5",
   "type": "module",
-  "main": "dist/src/index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "exports": {
     ".": {
-      "import": "./src/index.js",
-      "require": "./src/index.cjs",
-      "types ": "./dist/src/index.d.ts"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "build": "yarn build:tsc",
-    "build:tsc": "yarn tsc"
+    "prepack": "yarn build:tsdown",
+    "build": "yarn clean && yarn build:tsc && yarn build:js",
+    "build:tsdown": "yarn clean && tsdown",
+    "build:tsc": "yarn tsc --emitDeclarationOnly",
+    "build:js": "node build.js",
+    "clean": "rm -rf dist"
   },
   "devDependencies": {
     "@types/node": "^25.5.2",
+    "esbuild": "^0.28.0",
+    "tsdown": "^0.21.7",
     "typescript": "^6.0.2"
   }
 }
