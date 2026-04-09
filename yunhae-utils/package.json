@@ -2,7 +2,7 @@
   "name": "yunhae-utils",
   "version": "1.0.5",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/index.mjs",
   "license": "MIT",
   "exports": {
     ".": {
